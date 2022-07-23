@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/eae5839e36.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup page</title>
+</head>
+
+<body>
+    <main>
+        <form onsubmit="" method="post">
+            <h1 id="signup--heading">Sign up</h1>
+            <button type="button" id="close--button">
+                <em class="fa-solid fa-xmark"></em>
+            </button>
+            <button type="button" id="signin__google--button">
+                <em class="fa-brands fa-google"></em>
+                Sign in with Google
+            </button>
+            <hr>
+            </hr>
+            <div>
+                <label for="name--input">Name</label>
+                <input type="text" value="" id="name--input" />
+            </div>
+            <div>
+                <label for="email--input">Email</label>
+                <input type="email" value="" id="email--input" />
+            </div>
+            <div>
+                <label for="password--input">Password</label>
+                <input type="password" name="password" id="password--input">
+                <em style="left:13.9rem;top :10.5rem;position: fixed;" class="fa-solid fa-eye"></em>
+                <em style="left:13.9rem;top :10.5rem;position: fixed; visibility: hidden;"
+                    class="fa-solid fa-eye-slash"></em>
+                </input>
+            </div>
+            <hr>
+            </hr>
+            <div>
+                <input type="checkbox" id="agree--checkbox" value="" />
+                <label for="agree--checkbox">I agree with <a href="#">Terms</a> and <a href="#">Conditions</a></label>
+            </div>
+            <button type="submit" id="submit--button">Sign up</button>
+            <hr>
+            </hr>
+        </form>
+        <div>
+            <p>Already have an account?</p>
+            <a href="./login.html">Log In</a>
+        </div>
+
+    </main>
+</body>
+
+</html>
