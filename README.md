@@ -1,3 +1,5 @@
 # crework
+
 ## Week 1 - HTML exercises
- * Basic login and sign up pages using only HTML tags.
+
+- Basic [login](/week_1/index.html) and [sign up](/week_1/signup.html) pages using only HTML tags.
