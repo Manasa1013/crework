@@ -1,11 +1,5 @@
 @import url(https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap);
 
-:root{
-    --text-primary : #FFFFFF;
-    --text-secondary : #CDCDCD;
-    --background-primary : #1B1B1B;
-    --background-secondary : #4E4E4E;
-}
 body{
     box-sizing: border-box;
     font-family: 'Titillium Web', sans-serif;
@@ -13,11 +7,7 @@ body{
     padding: 0;
 }
 
-.main--wrapper{
-    
-    background-color: var(--background-secondary);
 
-}
 .flex--container{
     display: flex;
     flex-direction: column;
