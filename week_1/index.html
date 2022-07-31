@@ -14,43 +14,45 @@
 
 <body>
     <main class="main--wrapper">
-        <form onsubmit="" method="post">
-            <h1 id="login--heading">Login</h1>
-            <button type="button" id="cross--button">
-                <em class="fa-solid fa-xmark"></em>
-            </button>
-            <button type="button" id="login__google--button">
-                <em class="fa-brands fa-google"></em>
-                Log in with Google</button>
-            <hr>
-            </hr>
+        <section class="flex--container">
+            <form onsubmit="" method="post">
+                <h1 id="login--heading">Login</h1>
+                <button type="button" id="cross--button">
+                    <em class="fa-solid fa-xmark"></em>
+                </button>
+                <button type="button" id="login__google--button">
+                    <em class="fa-brands fa-google"></em>
+                    Log in with Google</button>
+                <hr>
+                </hr>
+                <div>
+                    <label for="email--input">Email</label>
+                    <input id="email--input" value="" />
+                </div>
+                <div>
+                    <label for="password--input">Password</label>
+                    <input id="password--input" value="">
+                    <em style="margin: 0 0 0.2rem -1.5rem;" class="fa-solid fa-eye"></em>
+                    </input>
+                </div>
+                <div>
+                    <input type="checkbox" name="checkbox" id="remember--checkbox" />
+                    <label for="remember--checkbox">Remember me</label>
+                </div>
+                <div>
+                    <button type="button" id="login--button">Log in</button>
+                </div>
+                <div>
+                    <a href="#" id="forgot--password">Forgot password?</a>
+                </div>
+                <hr>
+                </hr>
+            </form>
             <div>
-                <label for="email--input">Email</label>
-                <input id="email--input" value="" />
+                <p>Don't have an account?</p>
+                <a href="./signup.html">Sign up</a>
             </div>
-            <div>
-                <label for="password--input">Password</label>
-                <input id="password--input" value="">
-                <em style="margin: 0 0 0.2rem -1.5rem;" class="fa-solid fa-eye"></em>
-                </input>
-            </div>
-            <div>
-                <input type="checkbox" name="checkbox" id="remember--checkbox" />
-                <label for="remember--checkbox">Remember me</label>
-            </div>
-            <div>
-                <button type="button" id="login--button">Log in</button>
-            </div>
-            <div>
-                <a href="#" id="forgot--password">Forgot password?</a>
-            </div>
-            <hr>
-            </hr>
-        </form>
-        <div>
-            <p>Don't have an account?</p>
-            <a href="./signup.html">Sign up</a>
-        </div>
+        </section>
     </main>
 </body>
 

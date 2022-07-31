@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/eae5839e36.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/week_2/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup page</title>
+</head>
+
+<body>
+    <main class="wrapper__main">
+        <section class="flex-container">
+            <form onsubmit="" method="post">
+                <h1 id="signup--heading" class="heading">Sign up</h1>
+                <button type="button" id="close--button" class="crossbutton">
+                    <em class="fa-solid fa-xmark"></em>
+                </button>
+                <button type="button" id="signin__google--button" class="button">
+                    <em class="fa-brands fa-google padding-right"></em>
+                    Sign in with Google
+                </button>
+                <hr>
+                </hr>
+                <div>
+                    <label for="name--input" class="label">Name</label>
+                    <input type="text" value="" id="name--input" class="input" placeholder="John" />
+                </div>
+                <div>
+                    <label for="email--input" class="label">Email</label>
+                    <input type="email" value="" id="email--input"  class="input" placeholder="example@mail.com"/>
+                </div>
+                <div>
+                    <label for="password--input" class="label">Password</label>
+                    <input type="password" name="password" id="password--input" class="input" placeholder="xample@321">
+                    <em style="visibility: hidden;" class="fa-solid fa-eye"></em>
+                    <em class="fa-solid fa-eye-slash icon--position"></em>
+                    </input>
+                </div>
+                <hr>
+                </hr>
+                <div>
+                    <input type="checkbox" id="agree--checkbox" value="" class="checkbox"/>
+                    <label class="label--terms" for="agree--checkbox">I agree with <a href="#" class="link--secondary">Terms</a> and <a href="#" class="link--secondary">Conditions</a></label>
+                </div>
+                <button type="submit" id="submit--button" class="button signup">Sign up</button>
+                <hr>
+                </hr>
+            </form>
+            <div>
+                <p>Already have an account?</p>
+                <a href="./index.html" class="link--secondary">Log In</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

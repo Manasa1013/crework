@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/eae5839e36.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/week_2/css/styles.css">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <main class="wrapper__main">
+        <section class="flex-container">
+            <form onsubmit="" method="post">
+                <h1 id="login--heading" class="heading">Log in</h1>
+                <button type="button" id="cross--button" class="crossbutton">
+                    <em class="fa-solid fa-xmark"></em>
+                </button>
+                <button type="button" id="login__google--button" class="button">
+                    <em class="fa-brands fa-google padding-right"></em>
+                    Log in with Google</button>
+                <hr>
+                </hr>
+                <div>
+                    <label for="email--input" class="label">Email</label>
+                    <input id="email--input" value="" class="input" placeholder="example@mail.com"/>
+                </div>
+                <div>
+                    <label for="password--input" class="label">Password</label>
+                    <input id="password--input" value="" placeholder="xample@321" class="input">
+                    <em style="visibility: hidden;" class="fa-solid fa-eye"></em>
+                    <em class="fa-solid fa-eye-slash login__icon--position"></em>
+                    </input>
+                </div>
+                <div>
+                    <input type="checkbox" name="checkbox" id="remember--checkbox" class="checkbox" />
+                    <label for="remember--checkbox" class="label--remember">Remember me</label>
+                </div>
+                <div>
+                    <button type="submit" id="login--button" class="button login">Log in</button>
+                </div>
+                <div>
+                    <a href="#" id="forgot--password" class="link--secondary">Forgot password?</a>
+                </div>
+                <hr>
+                </hr>
+            </form>
+            <div>
+                <p>Don't have an account?</p>
+                <a href="./signup.html" class="link--secondary">Sign up</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
