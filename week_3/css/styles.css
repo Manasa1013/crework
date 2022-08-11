@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 :root {
@@ -31,6 +31,8 @@ body {
     justify-content: space-between;
     align-items : center;
     background-color: var(--white);
+    position: sticky;
+    top : 0;
 }
 .hamburger-menu{
     display: flex;
