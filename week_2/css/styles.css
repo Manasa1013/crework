@@ -8,12 +8,17 @@
     --primary-green : #3ff39f;
     --secondary-green : #047857;
 }
-
+html{
+    width: 100%;
+    height: 100%;
+}
 body {
     box-sizing: border-box;
     font-family: 'Titillium Web', sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100%;
+    width: 100%;
 }
 *, *::after,*::before{
     box-sizing: border-box;
@@ -38,6 +43,8 @@ body {
     justify-content: center;
     height: auto;
     max-width: 22rem;
+    filter: drop-shadow(0.5rem 0.5rem 1.5rem var(--background-secondary));
+    padding-bottom: 1rem;
 }
 
 .crossbutton{
@@ -50,7 +57,6 @@ body {
     border-radius: 10%;
     background-color: var(--background-secondary);
     color: var(--text-secondary);
-    /* border: 0.2px solid var(--text-secondary); */
     border: none;
     opacity: 1;
     font-weight: 800;
