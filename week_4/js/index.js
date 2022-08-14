@@ -7,6 +7,11 @@ let emailInputValue = emailInput.value;
 const passwordInput = document.querySelector("#password--input");
 let passwordInputValue = passwordInput.value;
 
+const isShownButton = document.querySelector("#is--shown");
+let isShownButtonValue = isShownButton.value;
+
+let showPassword = false;
+
 try {
   const nameContainer = document.querySelector("#name--container");
   const nameInput = document.querySelector("#name--input");
@@ -19,21 +24,18 @@ try {
     console.log(`nameInputValue,${nameInputValue}`);
   });
   nameInput.addEventListener("change", () => {
-    if (nameInputValue.length === 1 && nameInputValue[0] === " ") {
+    if (nameInputValue.length <= 1 && nameInputValue.length > 30) {
       console.log(`nameInputValue consists of one letter`);
+      nameInput.style.borderColor = "var(--error-red)";
+      nameAlert.innerHTML = `<span> Must be an appropriate name</span>`;
     }
   });
 } catch (e) {
   console.error("It's login form and name input field doesn't exist", e);
 }
 
-const eyeIcon = document.querySelector("#eye--icon");
-const eyeSlashIcon = document.querySelector("#eye-slash--icon");
-
 let emailAlert = document.createElement("div");
 let passwordAlert = document.createElement("div");
-
-let showPassword = false;
 
 emailContainer.appendChild(emailAlert);
 passwordContainer.appendChild(passwordAlert);
@@ -46,9 +48,9 @@ emailInput.addEventListener("input", (e) => {
 });
 emailInput.addEventListener("change", () => {
   if (!emailInputValue.includes("@")) {
-    emailAlert.innerHTML = `<span><i class="fa-solid fa-circle-xmark"></i>Must be an email</span>`;
+    emailAlert.innerHTML = `<span><i class="fa-solid fa-circle-xmark"></i> Must be an email</span>`;
   } else if (emailInputValue.length === 0) {
-    emailAlert.innerHTML = `<span>Email can't be blank`;
+    emailAlert.innerHTML = `<span><i class="fa-solid fa-triangle-exclamation"></i> Email can't be blank`;
   }
 });
 
@@ -57,9 +59,18 @@ passwordInput.addEventListener("input", (e) => {
   console.log(`password : ${passwordInputValue}`);
 });
 passwordInput.addEventListener("change", () => {
-  alert(passwordInputValue);
+  console.log(`password on chahen${passwordInputValue}`);
 });
 
 //toggling eye and eye-slash icons
 
-eyeIcon.addEventListener("click", () => {});
+isShownButton.addEventListener("click", () => {
+  if (showPassword === false) {
+    isShownButton.value = "Hide";
+    passwordInput.type = "text";
+  } else if (showPassword === true) {
+    isShownButton.value = "Show";
+    passwordInput.type = "password";
+  }
+  showPassword = !showPassword;
+});

@@ -49,7 +49,7 @@ body {
     justify-self: center;
     justify-content: center;
     height: auto;
-    max-width: 22rem;
+    max-width: 24rem;
     filter: drop-shadow(0.5rem 0.5rem 1.5rem var(--background-secondary));
     padding-bottom: 1rem;
 }
@@ -123,23 +123,28 @@ hr {
     border: 0.125rem solid var(--primary-green);
 
 }
-
-.icon--position {
-    position: absolute;
-    top: 49%;
-    color: var(--background-secondary);
-    font-size: small;
-    left: 59%;
+#password--input{
+    width: 73%;
+    margin: 0;
+    border-right: 0;
 }
-
-.login__icon--position {
-    position: absolute;
-    top: 60%;
-    left: 87%;
-    color: var(--background-secondary);
-    font-size: medium;
+.secondary{
+    border: 0.125rem solid var(--primary-green);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.5rem;
+    outline: none;
+    color: var(--secondary-green);
+    margin: 0;
+    width: 25%;
+    text-align: center;
+    border-left: 0;
+    font-weight: 650;
 }
+#is--shown{
+    display: inline;
 
+
+}
 .checkbox {
     border-radius: 0.125rem;
     display: inline;
