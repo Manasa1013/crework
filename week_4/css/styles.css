@@ -8,8 +8,15 @@
     --primary-green: #3ff39f;
     --secondary-green: #047857;
     --error-red : #E87C03;
-}
 
+}
+.alert{
+    color: var(--error-red);
+
+}
+.alert__border{
+    border: 0.125rem solid var(--error-red);
+}
 html {
     width: 100%;
     height: 100%;
