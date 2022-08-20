@@ -13,7 +13,7 @@
 <body>
     <main class="wrapper__main">
         <section class="flex-container">
-            <form onsubmit="" method="post">
+            <form action="./js/index.js" method="post">
                 <h1 id="signup--heading" class="heading">Sign up</h1>
                 <button type="button" id="close--button" class="crossbutton">
                     <em class="fa-solid fa-xmark"></em>
@@ -26,7 +26,7 @@
                 </hr>
                 <div id="name--container">
                     <label for="name--input" class="label">Username</label>
-                    <input type="text" id="name--input" class="input" placeholder="John" />
+                    <input type="text" id="name--input" autofocus="true" class="input" placeholder="John" />
                     <div id="name--alert"></div>
                 </div>
                 <div id="email--container">

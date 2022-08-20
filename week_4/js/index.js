@@ -41,9 +41,13 @@ try {
       if (!nameRegx.test(nameInputValue)) {
         showErrorAlert(nameAlert, nameInput);
         nameAlert.innerHTML = `<span ><i class="fa-solid fa-circle-xmark"></i>  Must be an appropriate name</span>`;
+        return false;
       } else if (nameInputValue.length === 0) {
         showErrorAlert(nameAlert, nameInput);
         nameAlert.innerHTML = `<span ><i class="fa-solid fa-circle-xmark"></i> Name can't be blank</span>`;
+        return false;
+      } else {
+        return true;
       }
     },
     false
@@ -64,9 +68,13 @@ emailInput.addEventListener("change", (eve) => {
   if (!emailRegx.test(emailInputValue)) {
     emailAlert.innerHTML = `<span><i class="fa-solid fa-circle-xmark"></i> Must be an email</span>`;
     showErrorAlert(emailAlert, emailInput);
+    return false;
   } else if (emailInputValue.length === 0) {
     showErrorAlert(emailAlert, emailInput);
     emailAlert.innerHTML = `<span><i class="fa-solid fa-triangle-exclamation"></i> Email can't be blank</span>`;
+    return false;
+  } else {
+    return true;
   }
 });
 
@@ -105,3 +113,7 @@ function showErrorAlert(alertField, entryField) {
   alertField.classList.add("alert");
   entryField.style.borderColor = "var(--error-red)";
 }
+
+const submitHandler = (req, res) => {
+  console.log(req, res);
+};
