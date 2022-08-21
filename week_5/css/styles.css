@@ -1,24 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 :root{
     --primary-color : "#ffffff";
+    --background-primary: #FFFFFF;
+    --background-secondary: #CDCDCD;
+    --text-primary: #1B1B1B;
+    --text-secondary: #4E4E4E;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--text-primary);
 }
 
 html{
-    min-height: 100%;
-    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    width: 100%;
+    font-family: 'Open-sans', sans-serif;
 }
 body{
-    
+    min-height: 100%;
+    width: 100%;
 }
+.header{
+    display: flex;
+    padding: 0.5rem 0.25rem;
+    color: var(--text-primary);
+    }
+
 .primary-button{
-    padding: 1rem;
-    border: 0.125rem solid transparent;
-    font-weight: 500;
-    background-color: grey ;
+    padding: 0.6rem 0.75rem;
+    border: 2px solid transparent;
+    border-radius: 0.125rem;
+    font-weight: 550;
+    background-color: var(--background-secondary);
+    color: var(--text-secondary);
+    opacity: 0.8;
+    max-width: max-content;
+}
+
+.primary-button:hover{
+    opacity: 1;
+    color: var(--text-primary);
+    transition: all 0.3s ease-in;
+}
+
+.main{
+    padding: 0.25rem;
+    margin: auto;
+    text-align: center;
+    min-height: 100%;
+    width: 100%;
+}
+
+.random_color--container{
+    align-content: center;
+}
+.section--heading{
+    align-items: center;
 }
