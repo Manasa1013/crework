@@ -47,16 +47,18 @@ body{
 }
 
 .main{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     padding: 0.25rem;
     margin: auto;
     text-align: center;
     min-height: 100%;
     width: 100%;
-}
-
-.random_color--container{
-    align-content: center;
+    position: sticky;
+    top : 19rem;
 }
 .section--heading{
-    align-items: center;
+    padding: 0.75rem 0.25rem;
+    font-size: larger;
 }
