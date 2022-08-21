@@ -10,7 +10,8 @@ It generates different backgrounds
 | Before clicking | After clicking |
 | --------------- | -------------- |
 
-| <img src="assets\random_chrome_firstpage.png" width="12.5rem" height="20rem"> | | <img src="assets\random_chrome_secondpage.png" width="12.5rem" height="20rem"> |
+ <img src="assets\random_chrome_firstpage.png" width="150" height="300"> 
+ <img src="assets\random_chrome_secondpage.png" width="150" height="300">
 
 ## JS Programs
 
