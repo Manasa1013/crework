@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('../../week_3/css/styles.css');
 
 :root{
     --primary-background : #E5E7EB;
@@ -16,6 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
 }
 html {
     height: 100%;
@@ -29,6 +31,16 @@ body{
     color: rgb(100 116 139/var(--tw-text-opacity));
     color: #64748b;
 }
+.navbar{
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--blue);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
 .header{
     background-color: var(--blue);
     color: var(--primary-white);
@@ -41,6 +53,12 @@ body{
     color: inherit;
     width: 100%;
     font-family: "Pacifico", cursive, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.white { 
+    color: var(--primary-background);
+}
+.pad-25-lr{
+    padding: 0 0.25rem;
 }
 .main{
     display: flex;
@@ -75,6 +93,7 @@ body{
 }
 .primary-button{
     color: var(--blue);
+    margin-left: 2px;
 }
 .button-container {
     display: flex;
@@ -174,10 +193,17 @@ body{
 
 @media screen and (min-device-width : 768px) {
     .task-container{
-        width: 50%;
+        width: 35%;
     }
     .toast{
         max-width: 30%;
+    }
+    .navbar{
+        margin-bottom: 1rem;
+        display: flex;
+        color: var(--primary-background);
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
