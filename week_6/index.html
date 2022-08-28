@@ -7,40 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/eae5839e36.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Todo | home</title>
+    <title>Notes | home</title>
+    <link rel="icon" type="image/x-icon" href="https://res-1.cdn.office.net/todo/557265_2.75.5/favicon.ico">
 </head>
 <body>
     <header class="header">
-        
+        <a href="#">Keep notes</a>
     </header>
     <main class="main">
         <section class="task-container">
             <h3 class="task-heading">
-                New task
+                
             </h3>
             <div class="input-container">
-                <input type="text" name="task-title" id="task-title" class="title-input" placeholder="title" value="js arrays"/>
-                <input type="text" autofocus="true" name="task-content" id="task-content" class="content-input"
-                    placeholder="Take a note" />
-            </div>
-            <div>
-                <button>
-                    <em class="fa-solid fa-square-check done"></em>
-                </button>
-            </div>
-            <div>
-                <button>
-                    <em class="fa-solid fa-palette"></em>
-                </button>
-            </div>
-            <div>
-                <button>
-                    <em class="fa-solid fa-clock"></em>
-                </button>
-                
+                <input type="text" name="task-title" id="task-title" class="title-input" placeholder="title" />
+                <textarea autofocus="true" name="task-content" id="task-content" class="content-area"
+                    placeholder="Take a note" ></textarea>
             </div>
             <div class="button-container">
-                <button type="button" class="primary-button" id="save-task">Save</button>
+                <div class="primary_button-container">
+                    <button type="button" class="button primary-button" id="save-task">Save</button>
+                </div>
+                <div class="icon_button-container">
+                    <button class="button icon-button ">    
+                        <em class="fa-solid fa-square-check done"></em>
+                    </button>
+                    <button class="button icon-button">
+                        <em class="fa-solid fa-palette"></em>
+                    </button>
+                    <button class="button icon-button">
+                        <em class="fa-solid fa-clock"></em>
+                    </button>
+                </div>
             </div>
         </section>
         <section class="task-list-container">
@@ -51,6 +49,9 @@
                 </ul>
             </div>
         </section>
+        <div class="toast visibility" id="toast-bar">
+            Some message to display
+        </div>
     </main>
     <footer class="footer">
 
