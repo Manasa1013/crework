@@ -3,12 +3,13 @@
 
 :root{
     --primary-background : #E5E7EB;
-    --secondary-background : ;
+    --secondary-background : #cbf0f8;
     --primary-text : #323130;
-    --secondary-text : ;
+    --secondary-text : #64748b;
     --tw-text-opacity  : 1;
-    --blue : #2564cf;
+    --blue : rgb(37, 100, 207);
     --secondary-blue : #0078d4;
+    --secondary-white : #976b1f;
     --primary-white : #FFFFFF;
 }
 *{
@@ -25,23 +26,24 @@ body{
     height: 100%;
     font-family: 'Titillium Web', sans-serif;
     position: relative;
-    background-color: rgb(229, 235, 239);
-    color: rgb(100 116 139/var(--tw-text-opacity));
-    color: #64748b;
+    background-color: #e5ebef;
+    /* color: rgb(100 116 139/var(--tw-text-opacity)); */
+    color: var(--secondary-text);
 }
 .navbar{
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--blue);
+    background-color: var(--primary-white);
     position: sticky;
     top: 0;
     z-index: 5;
+    filter: drop-shadow(0 2px 2px rgb(0 0 0 /20%));
 }
 .header{
-    background-color: var(--blue);
-    color: var(--primary-white);
+    background-color: var(--primary-white);
+    color: var(--blue);
     font-weight: 500;
     font-size: larger;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
@@ -58,7 +60,7 @@ body{
 .pad-25-lr{
     padding: 0 0.25rem;
 }
-.main{
+.flex-wrapper{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,6 +106,13 @@ body{
 }
 .primary_button-container{
 
+}
+.delete-task{
+    background-color: var(--secondary-background);
+}
+.delete-task:hover, .delete-task:focus{
+    background-color: var(--secondary-background);
+    /* outline: 1px solid var(--); */
 }
 .input-container::placeholder{
         font-weight: 500;

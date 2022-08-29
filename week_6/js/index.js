@@ -53,14 +53,18 @@ saveTaskButton.addEventListener(
 function addTaskToDisplay(taskObject) {
   let taskItem = document.createElement("li");
   let deleteTaskButton = document.createElement("button");
+  let editTaskButton = document.createElement("button");
   let deleteIcon = document.createElement("em");
+  let editIcon = document.createElement("em");
 
   taskItem.setAttribute("id", taskObject.id);
-  deleteTaskButton.setAttribute("class", "delete-task");
+  taskItem.className = "task-card";
+  deleteTaskButton.setAttribute("class", "delete-task button icon-button");
+  editTaskButton.setAttribute("class", "delete-task button icon-button");
   deleteIcon.className = "fa-solid fa-trash";
+  editIcon.className = "fa-solid fa-edit";
 
-  taskItem.innerHTML = `${taskObject.title} ${taskObject.content}`;
-
+  taskItem.innerHTML = `<h3 class="task__header--display" id="display-header">${taskObject.title}</h3><p class="task__content--display" id="display--content"> ${taskObject.content} </p>`;
   deleteTaskButton.addEventListener("click", (e) => {
     console.log(e.target.parentElement.parentElement.id);
     let deleteItem = document.getElementById(
@@ -72,7 +76,9 @@ function addTaskToDisplay(taskObject) {
   });
 
   deleteTaskButton.appendChild(deleteIcon);
+  editTaskButton.appendChild(editIcon);
   taskItem.appendChild(deleteTaskButton);
+  taskItem.appendChild(editTaskButton);
   taskListBox.appendChild(taskItem);
 }
 
