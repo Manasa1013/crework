@@ -14,8 +14,12 @@ let task = {
   isDone: false,
 };
 
-let taskList = [];
-
+let taskList = getLocalTaskList("taskList") || [];
+if (taskList.length > 0) {
+  for (let i = 0; i < taskList.length; i++) {
+    addTaskToDisplay(taskList[i]);
+  }
+}
 taskTitle.addEventListener(
   "change",
   (e) => {
@@ -37,9 +41,10 @@ saveTaskButton.addEventListener(
   () => {
     taskList = addTaskToList(task, taskList);
     console.log({ taskList }, "in saving task");
-    // let taskToBeAdded = taskList[taskList.length - 1];
-    let taskToBeAdded = task;
+    let taskToBeAdded = taskList[taskList.length - 1];
+    // let taskToBeAdded = task;
     addTaskToDisplay(taskToBeAdded);
+    showToast(`${taskToBeAdded.title || "Untitled"} saved successfully `);
     resetValues(task);
   },
   false
@@ -69,7 +74,6 @@ function addTaskToDisplay(taskObject) {
   deleteTaskButton.appendChild(deleteIcon);
   taskItem.appendChild(deleteTaskButton);
   taskListBox.appendChild(taskItem);
-  showToast(`${taskObject.title || "Untitled"} saved successfully`);
 }
 
 function addTaskToList(taskObj, taskArray) {
@@ -83,17 +87,27 @@ function addTaskToList(taskObj, taskArray) {
       title: taskObj.title || "Untitled",
     },
   ];
-  console.log(taskArray, "in addTasktoList method");
-  return taskArray;
+  setLocalTaskList(taskArray);
+  console.log(
+    getLocalTaskList("taskList"),
+    "in addTasktoList method from Localstorage"
+  );
+  return getLocalTaskList("taskList");
 }
 
 function deleteTaskFromList(taskObjID) {
-  console.log(taskList, taskObjID, "before tasks deleted");
-  let filteredList = taskList.filter((taskItem) => taskItem.id !== taskObjID);
-  taskList = filteredList;
+  taskObjID = parseInt(taskObjID, 10);
+  let taskItems = getLocalTaskList("taskList");
+  console.log(taskItems, taskObjID, "before tasks deleted");
+  let deleteItemIndex = taskItems.findIndex((taskItem) => {
+    return taskItem.id === taskObjID;
+  });
+  console.log(deleteItemIndex, "deleteItemIndex at 103");
+  taskItems.splice(deleteItemIndex, 1);
+  setLocalTaskList(taskItems);
   console.log("after deleted", taskList);
   showToast(`Deleted successfully`);
-  return taskList;
+  return getLocalTaskList("taskList");
 }
 
 function saveTask(taskItem, taskKey, e, _taskValue) {
@@ -113,6 +127,14 @@ function resetValues(taskItem) {
   taskTitle.value = ``;
   taskContent.value = ``;
   return taskItem;
+}
+
+function setLocalTaskList(taskList) {
+  return localStorage.setItem("taskList", JSON.stringify(taskList));
+}
+
+function getLocalTaskList(taskListKey) {
+  return JSON.parse(localStorage.getItem(taskListKey));
 }
 
 function showToast(message) {
