@@ -4,6 +4,7 @@
 :root{
     --primary-background : #E5E7EB;
     --secondary-background : #cbf0f8;
+    --pastel-blue: #9ad0ec;
     --primary-text : #323130;
     --secondary-text : #64748b;
     --tw-text-opacity  : 1;
@@ -30,13 +31,15 @@ body{
     /* color: rgb(100 116 139/var(--tw-text-opacity)); */
     color: var(--secondary-text);
 }
+
 .navbar{
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--primary-white);
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 5;
     filter: drop-shadow(0 2px 2px rgb(0 0 0 /20%));
@@ -72,6 +75,7 @@ body{
     width: 80%;
     background-color: var(--primary-white);
     color: var(--primary-text);
+
     padding: 0.5rem;
     border-radius: 0.2rem;
     filter: drop-shadow(0 3px 5px rgb(0 0 0 / 20%));
@@ -107,10 +111,10 @@ body{
 .primary_button-container{
 
 }
-.delete-task{
+.icon-task{
     background-color: var(--secondary-background);
 }
-.delete-task:hover, .delete-task:focus{
+.icon-task:hover, .icon-task:focus{
     background-color: var(--secondary-background);
     /* outline: 1px solid var(--); */
 }
@@ -211,6 +215,9 @@ body{
         color: var(--primary-background);
         justify-content: space-between;
         align-items: center;
+        position: fixed;
+        top : 0;
+        width: 100%;
     }
 }
 

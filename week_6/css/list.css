@@ -53,24 +53,23 @@ body {
     text-decoration: none;
 }
 .unordered-list{
+    padding: 0.25rem;
     list-style: none;
     text-decoration: none;
     display: grid;
     grid-gap : 2rem;
     
     height: auto;
-    width: calc(50% - 2rem);
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    place-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    place-items: center;
 }
 .task-card {
     border: 1px solid var(--secondary-background);
     border-radius: 4px;
     padding: 1rem;
     padding-top: 2rem;
-    flex-basis: calc(60% - 2rem);
-    /* width: calc(50% - 2rem); */
-    /* word-wrap: break-word; */
+    width: calc(90% - 2rem);
+    word-wrap: break-word;
     position: relative;
     filter: drop-shadow(0 2px 5px rgb(0 0 0 / 20%));
     cursor: pointer;
@@ -78,11 +77,42 @@ body {
     color: var(--primary-text);
     background-color: var(--secondary-background);
 }
+.done {
+    text-decoration: line-through;
+    opacity: 0.87;
+    
+}
+
+.edit-position{
+    position: absolute;
+    top : 13rem;
+    left: 2rem;
+}
+.edit-wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;  
+    background-color: rgba(0,0,0,0.4);
+    z-index: 10;
+}
 .column-wrap {
     display: flex;
     flex-flow: column wrap;
 }
-
+.edit {
+    background-color: var(--secondary-background);
+}
+.edit-position > input{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.edit-position > textarea{
+    font-size: 1rem;
+    
+}
 .row-wrap {
     display: flex;
     flex-flow: row nowrap;
@@ -188,7 +218,14 @@ footer {
         flex-flow: column wrap;
         align-items: center;
     }
-
+    .edit-position {
+        position: absolute;
+        top: 13rem;
+        left: 20rem;
+        width: calc(45% - 2rem);
+        word-wrap: break-word;
+    }
+    
     .navbar-component {
         margin-bottom: 1rem;
         display: flex;
