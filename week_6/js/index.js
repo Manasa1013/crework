@@ -213,6 +213,7 @@ function deleteTaskFromList(taskObjID) {
     return taskItem.id === taskObjID;
   });
   console.log(deleteItemIndex, "deleteItemIndex at 103");
+  if (deleteItemIndex < 0) return getLocalTaskList("taskList");
   taskItems.splice(deleteItemIndex >= 0 && deleteItemIndex, 1);
   setLocalTaskList(taskItems);
   console.log("after deleted", taskList);
