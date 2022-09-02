@@ -56,12 +56,11 @@ body {
     padding: 0.25rem;
     list-style: none;
     text-decoration: none;
-    display: grid;
-    grid-gap : 2rem;
-    
+    display: grid; 
     height: auto;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    place-items: center;
+     grid-gap : 2rem; 
+     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+     place-items: center; 
 }
 .task-card {
     border: 1px solid var(--secondary-background);
@@ -76,6 +75,7 @@ body {
     height: max-content;
     color: var(--primary-text);
     background-color: var(--secondary-background);
+    margin-top: 2rem;
 }
 .done {
     text-decoration: line-through;
@@ -211,7 +211,7 @@ footer {
     .categories__list>li {
         padding: 0 0.5rem;
     }
-
+    
     main>.categories__list {
         display: flex;
         justify-content: center;
@@ -222,10 +222,15 @@ footer {
         position: absolute;
         top: 13rem;
         left: 20rem;
-        width: calc(45% - 2rem);
+        width: calc(50% - 2rem);
         word-wrap: break-word;
     }
-    
+    .task-card{
+        width: calc(100% -  2rem);
+    }
+    .unordered-list{
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
     .navbar-component {
         margin-bottom: 1rem;
         display: flex;

@@ -4,7 +4,7 @@ const saveTaskButton = document.querySelector("#save-task");
 const taskListBox = document.querySelector("#task-list-box");
 const toastBar = document.querySelector("#toast-bar");
 const editCard = document.querySelector(".edit-position.task-card");
-
+const saveEditTaskButton = document.querySelector("#save-edit-task");
 const body = document.querySelector("body");
 const editWrapper = document.querySelector(".edit-wrapper");
 
@@ -57,6 +57,7 @@ saveTaskButton.addEventListener(
     console.log({ taskList }, "in saving task");
     let taskToBeAdded = taskList[taskList.length - 1];
     addTaskToDisplay(taskToBeAdded);
+
     showToast(`${taskToBeAdded.title || "Untitled"} saved successfully `);
     resetValues(task);
   },
@@ -92,6 +93,7 @@ function addTaskToDisplay(taskObject) {
       e.target.parentElement.parentElement.id
     );
     deleteTaskFromList(e.target.parentElement.parentElement.id);
+    showToast(`Deleted successfully ${taskObject.title} `);
     let deletedItem = taskListBox.removeChild(deleteItem);
     console.log(deletedItem);
   });
@@ -101,23 +103,9 @@ function addTaskToDisplay(taskObject) {
     (e) => {
       e.preventDefault();
       editWrapper.classList = ["edit-wrapper"];
-      let taskToBeEditedID = e.target.parentElement.parentElement.id;
-      let taskListFromLocalStorage = getLocalTaskList("taskList");
-
-      editCard.setAttribute("id", taskToBeEditedID);
-
-      taskToBeEditedID = parseInt(taskToBeEditedID, 10);
-      let taskToBeEdited = findElement(
-        taskToBeEditedID,
-        taskListFromLocalStorage
-      );
-      let taskToBeEditedIndex = taskListFromLocalStorage.findIndex(
-        (item) => item.id === taskToBeEditedID
-      );
-      console.log(taskToBeEdited);
-      console.log(editCard);
-      editCard.children["display-header"].value = taskToBeEdited.title;
-      editCard.children["display-content"].value = taskToBeEdited.content;
+      editCard.children["display-header"].value = taskObject.title;
+      editCard.children["display-content"].value = taskObject.content;
+      let taskToBeEdited = taskObject;
       editCard.children["display-header"].addEventListener("change", (e) => {
         taskToBeEdited = saveTask(taskToBeEdited, "title", e);
       });
@@ -126,24 +114,30 @@ function addTaskToDisplay(taskObject) {
       });
       editCard.children["display-header"].value = taskToBeEdited.title;
       editCard.children["display-content"].value = taskToBeEdited.content;
+      saveEditTaskButton.addEventListener(
+        "click",
+        (e) => {
+          editCard.id = taskToBeEdited.id;
+          let deleteItem = document.getElementById(
+            e.target.parentElement.parentElement.parentElement.id
+          );
+          deleteTaskFromList(
+            e.target.parentElement.parentElement.parentElement.id
+          );
+          let deletedItem = taskListBox.removeChild(deleteItem);
+          let newTaskList = addTaskToList(
+            { ...taskToBeEdited, id: Date.now() },
+            getLocalTaskList("taskList")
+          );
+          addTaskToDisplay(newTaskList[newTaskList.length - 1]);
+          editWrapper.classList = ["edit-wrapper visibility"];
+          return newTaskList;
+        },
+        false
+      );
+
       console.log(taskToBeEdited, "after editing inputs");
 
-      let taskToBeEditedNode = document.getElementById(taskToBeEditedID);
-      console.log(taskToBeEditedNode, "node of editable task");
-      taskToBeEditedNode.children["display-header"].value =
-        taskToBeEdited.title;
-      taskToBeEditedNode.children["display-content"].value =
-        taskToBeEdited.content;
-
-      let newTask = { ...taskToBeEdited, id: Date.now() };
-
-      taskListFromLocalStorage = deleteTaskFromList(taskToBeEdited);
-      console.log(taskListFromLocalStorage);
-      taskListFromLocalStorage = addTaskToList(
-        newTask,
-        taskListFromLocalStorage
-      );
-      console.log(taskListFromLocalStorage);
       /*
        * firstly, when edit button clicked, editcard pops up using css.
        * edit card input values filled with the respective task values.
@@ -189,19 +183,19 @@ function addTaskToDisplay(taskObject) {
   taskItem.appendChild(deleteTaskButton);
   taskItem.appendChild(editTaskButton);
   taskItem.appendChild(doneTaskButton);
-  taskListBox.appendChild(taskItem);
+  taskListBox.insertBefore(taskItem, taskListBox.firstChild);
 }
 
 function addTaskToList(taskObj, taskArray) {
   console.log(taskObj, taskArray, "from addtasktolist");
   // if (taskObj.content.length <= 0) return taskArray;
   taskArray = [
+    ...taskArray,
     {
       ...taskObj,
       id: Date.now(),
       title: taskObj.title || "Untitled",
     },
-    ...taskArray,
   ];
   setLocalTaskList(taskArray);
   console.log(
@@ -219,10 +213,9 @@ function deleteTaskFromList(taskObjID) {
     return taskItem.id === taskObjID;
   });
   console.log(deleteItemIndex, "deleteItemIndex at 103");
-  taskItems.splice(deleteItemIndex, 1);
+  taskItems.splice(deleteItemIndex >= 0 && deleteItemIndex, 1);
   setLocalTaskList(taskItems);
   console.log("after deleted", taskList);
-  showToast(`Deleted successfully`);
   return getLocalTaskList("taskList");
 }
 
