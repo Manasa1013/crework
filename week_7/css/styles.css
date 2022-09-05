@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+:root {
+    --primary-green: #047857;
+    --white: #FFFFFF;
+    --secondary-white: #F9FAFB;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--primary-green);
+    background-color: var(--secondary-white);
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    outline: var(--primary-green);
+}
+
+.inline {
+    display: inline;
+}
+
+.navbar-component {
+    margin-bottom: 1rem;
+    display: flex;
+    color: var(--primary-green);
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+}
+
+.hamburger-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-flow: row nowrap;
+}
+
+.categories__list {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    list-style: none;
+    text-decoration: none;
+}
+
+.column-wrap {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.row-wrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.responsive {
+    display: none;
+}
+
+.line {
+    width: 1.6rem;
+    height: 0.2rem;
+    margin: 0.25rem;
+    background-color: var(--primary-green);
+    display: block;
+    position: relative;
+}
+
+.first {
+    transform: rotate(45deg);
+    top: 0.45rem;
+
+}
+
+.third {
+    transform: rotate(-45deg);
+    bottom: 0.45rem;
+}
+
+.second {
+    visibility: hidden;
+
+}
+
+.link {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--primary-green);
+    padding: 0 0.25rem;
+
+}
+
+.logo {
+    font-family: "Pacifico", cursive, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.responsive-img {
+    max-width: 100%;
+    margin: 0;
+}
+
+.heading {
+    padding: 0 0.5rem;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--white);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search__input {
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    border: none;
+    width: calc(100% - 2rem);
+    height: auto;
+    display: inline;
+}
+.search__button {
+    display: inline;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    border: none;
+    color: var(--primary-green);
+    background-color: var(--white);
+    /* border: 1.5px solid var(--primary-green); */
+}
+.search__container{
+    opacity: 0.7;
+    margin: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    width: calc(90% - 2rem);
+    outline: 1px solid var(--primary-green);
+    border-radius: 0.125rem;
+}
+.search__container:hover , .search__button:hover , .search__input:hover{
+    opacity: 1;
+    outline: 2px solid var(--primary-green);
+}
+@media screen and (min-device-width : 768px) {
+    .categories__list {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        text-decoration: none;
+        align-items: flex-start;
+    }
+
+    .categories__list>li {
+        padding: 0 0.5rem;
+    }
+
+    main>.categories__list {
+        display: flex;
+        justify-content: center;
+        flex-flow: column wrap;
+        align-items: center;
+    }
+
+    .navbar-component {
+        margin-bottom: 1rem;
+        display: flex;
+        color: var(--primary-green);
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .responsive {
+        display: contents;
+    }
+    .search__container {
+        width: 60%;
+    }
+}

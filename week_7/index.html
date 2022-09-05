@@ -6,10 +6,52 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://kit.fontawesome.com/eae5839e36.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather | update</title>
-    
+    <title>Spotify | Music</title>
+    <link rel="icon" type="image/x-icon" href="./assets/spotify.svg">    
 </head>
-<body>
-    
+<body  style="overflow: scroll;">
+    <nav class="navbar-component">
+        <div class="hamburger-menu">
+            <a class="link inline" href="#">
+                <span class="line "></span>
+                <span class="line "></span>
+                <span class="line "></span>
+            </a>
+            <header class="inline">
+                <a href="#" class="logo link">Spotify</a>
+            </header>
+        </div>
+        <ul class="categories__list">
+            <li>
+                <a href="#" class="link responsive" >Artists</a>
+            </li>
+            <li>
+                <a href="#" class="link responsive">Songs</a>
+            </li>
+            <li>
+                <a href="#" class="link responsive">Playlists</a>
+            </li>
+        </ul>
+        <ul class="categories__list">
+            <li>
+                <a href="https://signupandlogin.netlify.app/" class="link" >Login/Signup</a>
+            </li>
+            <li>
+                <a href="#" class="link responsive">
+                    <em class="fa-solid fa-heart" ></em>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h1 class="heading"></h1>
+            <div class="search__container">
+                <input type="search" name="search-input" id="search-input" class="search__input" placeholder="Search 90's melodies" />
+                <button type="button" class="search__button">Search</button>
+            </div>
+        </section>
+    </main>
+    <script type="text/javascript" src="./js/index.js"></script>
 </body>
 </html>
