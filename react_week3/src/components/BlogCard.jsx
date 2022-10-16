@@ -3,7 +3,7 @@ export const BlogCard = ({ blogger, imgSrc, title, id, altText }) => {
     <>
       <div className="">
         <div key={id}>
-          <img className="blog--img" src={imgSrc} alt={altText} />
+          <img className="blog--img" src={imgSrc} alt={altText}>
         </div>
       </div>
     </>
