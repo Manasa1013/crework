@@ -14,7 +14,7 @@
   * Increase or decrease the item count in cart
   
 ## Deployed link
-  [Lefties cart](https://leftiescart.netlify.app/)
+  [Lefties cart](https://zugtee.csb.app/)
 
 ## Inspiration
  * [For left handers' accessories](https://thelefthandshop.in/)
