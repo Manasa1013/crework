@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap);
+
+:root {
+  --text-primary: #FFFFFF;
+  --text-secondary: #CDCDCD;
+  --background-primary: #1B1B1B;
+  --background-secondary: #4E4E4E;
+  --primary-green: #3ff39f;
+  --secondary-green: #047857;
+  --error-red: #E87C03;
+
+}
+
+
