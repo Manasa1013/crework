@@ -12,9 +12,25 @@
     z-index: 10;
     border-bottom: 4px solid var(--primary-green);
 }
-
-.visibility {
+.icon--xmark{
+    height: 2rem;
+    width: 1.7rem;
+    text-align: center;
+    border-radius: 10%;
+    background-color: var(--text-primary);
+    color: var(--secondary-green);
+    border: none;
+    opacity: 1;
+    font-weight: 800;
+}
+.icon--button {
+    background-color: var(--text-primary);
+    border: none;
+}
+.hide {
     visibility: hidden;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
 .show {
@@ -22,6 +38,7 @@
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+
 @media screen and (min-width : 420px) and (max-width : 600px) {
     .toast {
         max-width: 60%;
