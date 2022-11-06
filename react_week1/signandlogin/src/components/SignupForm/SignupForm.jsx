@@ -41,7 +41,11 @@ function SignupForm({
               <h1 id="login--heading" className="heading">
                 Sign up
               </h1>
-              <button type="button" id="cross--button" className="crossbutton">
+              <button
+                type="button"
+                id="cross--button"
+                className="crossbutton crossbutton--position"
+              >
                 <em className="fa-solid fa-xmark"></em>
               </button>
               <button
@@ -201,7 +205,7 @@ function SignupForm({
                   id="login--button"
                   className="button login"
                   onClick={() => {
-                    console.clear();
+                    // console.clear();
                   }}
                 >
                   Sign up

@@ -59,9 +59,7 @@ body {
 }
 
 .crossbutton {
-    position: absolute;
-    bottom: 90%;
-    left: 74%;
+   
     height: 1.75rem;
     width: 1.7rem;
     text-align: center;
@@ -72,7 +70,11 @@ body {
     opacity: 1;
     font-weight: 800;
 }
-
+.crossbutton--position {
+    position: absolute;
+    bottom: 90%;
+    left: 74%;
+}
 .crossbutton:hover {
     background-color: var(--text-secondary);
     color: var(--background-primary);
