@@ -14,23 +14,14 @@ function SignupForm({
   setShowPassword,
   showForm,
   setShowForm,
+  usernNameRegexPattern,
+  emailRegexPattern,
+  passwordRegexPattern,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
     submitHandler();
   }
-  let indexOfInput = 0;
-  const usernNameRegexPattern = new RegExp(
-    "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
-  );
-  const emailRegexPattern = new RegExp(
-    "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",
-    "i"
-  );
-  const passwordRegexPattern = new RegExp(
-    "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,18}$",
-    "i"
-  );
 
   return (
     <>
@@ -66,7 +57,6 @@ function SignupForm({
                   id="name--input"
                   value={field.userName}
                   className="input"
-                  tabIndex={++indexOfInput}
                   placeholder="James_Cameron"
                   onInput={(e) => {
                     // console.log(e.target.value, "username");
@@ -83,7 +73,9 @@ function SignupForm({
                       usernNameRegexPattern,
                       field.userName,
                       "nameError",
-                      errorAlertMessage
+                      errorAlertMessage,
+                      errorField,
+                      setErrorField
                     );
                   }}
                 />
@@ -98,7 +90,6 @@ function SignupForm({
                   className="input"
                   name="emailID"
                   value={field.emailID}
-                  tabIndex={++indexOfInput}
                   placeholder="jamescameron@mail.com"
                   onInput={(e) => {
                     console.log(e.target.value);
@@ -113,7 +104,9 @@ function SignupForm({
                       emailRegexPattern,
                       field.emailID,
                       "emailError",
-                      errorAlertMessage
+                      errorAlertMessage,
+                      errorField,
+                      setErrorField
                     );
                   }}
                 />
@@ -129,7 +122,6 @@ function SignupForm({
                   className="input"
                   name="password"
                   value={field.password}
-                  tabIndex={++indexOfInput}
                   placeholder="theWay^OfWater2"
                   onInput={(e) => {
                     // console.log(e.target.value);
@@ -146,14 +138,15 @@ function SignupForm({
                       passwordRegexPattern,
                       field.password,
                       "passwordError",
-                      errorAlertMessage
+                      errorAlertMessage,
+                      errorField,
+                      setErrorField
                     );
                   }}
                 ></input>
                 <button
                   id="is--shown"
                   className="secondary"
-                  tabIndex={++indexOfInput}
                   onClick={(e) => {
                     e.preventDefault();
                     setShowPassword((prev) => !prev);
@@ -171,7 +164,7 @@ function SignupForm({
                 <input
                   type="checkbox"
                   name="checkbox"
-                  id="remember--checkbox"
+                  id="agree--checkbox"
                   value={field.isChecked}
                   onClick={(e) => {
                     console.log(e.target.checked);
@@ -187,7 +180,7 @@ function SignupForm({
                   }}
                   className="checkbox"
                 />
-                <label htmlFor="remember--checkbox" className="label--remember">
+                <label htmlFor="agree--checkbox" className="label--remember">
                   I agree with{" "}
                   <a href="#" className="link--secondary">
                     Terms
