@@ -1,6 +1,16 @@
 import ".././index.css";
+import { useParams } from "react-router";
 
 export function Home({ fields }) {
+  let { fieldItemID } = useParams();
+  console.log(fieldItemID);
+  console.log(fields, "at home 7line");
+  let requiredField = fields.find((fieldItem) => {
+    if (fieldItem.id === fieldItemID) {
+      console.log("at Home", fieldItemID);
+      return fieldItem;
+    }
+  });
   return (
     <>
       <h3
@@ -10,7 +20,8 @@ export function Home({ fields }) {
           padding: "1rem",
         }}
       >
-        {`Welcome Home! ${fields[0].userName}`}
+        {`Welcome Home! `}
+        {`${requiredField.userName}`}
       </h3>
     </>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import { Home } from "./components/Home";
@@ -16,6 +16,18 @@ function App() {
     password: "",
     isChecked: false,
   });
+  const [loginField, setLoginField] = useState({
+    emailID: "",
+    password: "",
+    isRemembered: false,
+  });
+  const [loginErrorField, setLoginErrorField] = useState({
+    emailError: "",
+    passwordError: "",
+  });
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(true);
+  const [signedIn, setSignedIn] = useState(false);
   const [errorField, setErrorField] = useState({
     nameError: "",
     emailError: "",
@@ -29,9 +41,29 @@ function App() {
     isVisible: "hide",
     message: "",
   });
-  function validateFields(regexPattern, fieldName, errorName, errorText) {
+  const usernNameRegexPattern = new RegExp(
+    "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
+  );
+  const emailRegexPattern = new RegExp(
+    "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",
+    "i"
+  );
+  const passwordRegexPattern = new RegExp(
+    "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,18}$",
+    "i"
+  );
+  const [validFieldID, setValidFieldID] = useState("");
+  const navigate = useNavigate();
+  function validateFields(
+    regexPattern,
+    fieldName,
+    errorName,
+    errorText,
+    errorField,
+    setErrorField
+  ) {
     let errorFieldName = Object.keys(errorField).find(
-      (item) => item == errorName
+      (item) => item === errorName
     );
     if (regexPattern.test(fieldName)) {
       console.log("pattern matched", errorFieldName);
@@ -46,7 +78,51 @@ function App() {
       });
     }
   }
+  function loginSubmitHandler() {
+    if (
+      loginErrorField.emailError.length > 0 ||
+      loginErrorField.passwordError.length > 0
+    ) {
+      setToast((prev) => ({
+        ...prev,
+        isVisible: "show",
+        message: "Please enter valid credentials",
+      }));
+    } else {
+      // now, we have fields data to check, for the loginField details
+      //search in fields array to check whether the loginField details match
+      let validFieldData = fields.find((fieldItem) => {
+        if (fieldItem.emailID === loginField.emailID) {
+          if (fieldItem.password === loginField.password) {
+            setToast((prev) => ({
+              ...prev,
+              isVisible: "show",
+              message: `Successfully logged in ${fieldItem.userName}`,
+            }));
+            setValidFieldID(() => fieldItem.id);
+            setSignedIn(() => true);
 
+            console.log(validFieldID, "at line 102");
+          } else {
+            setLoginErrorField((prev) => ({
+              ...prev,
+              passwordError: "Please enter correct password",
+            }));
+            setValidFieldID("");
+          }
+        } else {
+          setToast((prev) => ({
+            ...prev,
+            isVisible: "show",
+            message: "We couldn't find your details,please Signup first",
+          }));
+        }
+        return validFieldID;
+      });
+      resetLoginValues();
+    }
+    return validFieldID;
+  }
   function submitHandler() {
     if (field.isChecked === false)
       setErrorField((prev) => ({
@@ -83,6 +159,11 @@ function App() {
               isVisible: "show",
               message: "Successfully signed up",
             }));
+            setFields((prev) => [response.data.data[0], ...prev]);
+            setValidFieldID(() => response.data.data[0].id);
+
+            setSignedIn(() => true);
+
             resetValues();
             return response.data;
           } else {
@@ -101,7 +182,15 @@ function App() {
       console.log(responseFromPostData);
     }
   }
-
+  function resetLoginValues() {
+    setShowLoginForm(() => false);
+    setLoginField((prev) => ({
+      ...prev,
+      emailID: "",
+      password: "",
+      isRemembered: false,
+    }));
+  }
   function resetValues() {
     setShowForm(() => false);
     setField((prev) => ({
@@ -115,6 +204,22 @@ function App() {
   function hideToastBar() {
     setToast((prev) => ({ ...prev, isVisible: "hide", message: "" }));
   }
+
+  const fetchApiData = async () => {
+    try {
+      const response = await axios.get(`${url}/login`);
+      if (response.status !== 200)
+        console.log("fetching data failed", response.status);
+      else {
+        console.log(response.data);
+        let credentials = response.data.data;
+        setFields(() => [...credentials]);
+      }
+    } catch (err) {
+      console.error(err, "at axios of frontend");
+    }
+  };
+
   const url = "https://signupbackend.manasa1998.repl.co";
 
   useEffect(() => {
@@ -127,50 +232,83 @@ function App() {
   }, [toast]);
 
   useEffect(() => {
-    const fetchApiData = async () => {
-      try {
-        const response = await axios.get(`${url}/login`);
-        if (response.status !== 200)
-          console.log("fetching data failed", response.status);
-        else {
-          console.log(response.data);
-          let credentials = response.data.data;
-          setFields(() => [...credentials]);
-        }
-      } catch (err) {
-        console.error(err, "at axios of frontend");
-      }
-    };
     fetchApiData();
-  }, [toast.message]);
+  }, []);
+  useEffect(() => {
+    if (signedIn) {
+      console.log(validFieldID, "at line 236");
+
+      navigate(`/home/${validFieldID}`);
+    }
+  }, [validFieldID]);
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/login"
+          element={
+            <LoginForm
+              loginField={loginField}
+              setLoginField={setLoginField}
+              loginErrorField={loginErrorField}
+              setLoginErrorField={setLoginErrorField}
+              showLoginPassword={showLoginPassword}
+              setShowLoginPassword={setShowLoginPassword}
+              showLoginForm={showLoginForm}
+              setShowLoginForm={setShowLoginForm}
+              fields={fields}
+              setFields={setFields}
+              validateFieldsHandler={validateFields}
+              emailRegexPattern={emailRegexPattern}
+              passwordRegexPattern={passwordRegexPattern}
+              loginSubmitHandler={loginSubmitHandler}
+            />
+          }
+        />
         <Route
           path="/signup"
           element={
-            showForm ? (
-              <SignupForm
-                validateFieldsHandler={validateFields}
-                submitHandler={submitHandler}
-                fields={fields}
-                setFields={setFields}
-                field={field}
-                setField={setField}
-                errorField={errorField}
-                setErrorField={setErrorField}
-                showPassword={showPassword}
-                setShowPassword={setShowPassword}
-                showForm={showForm}
-                setShowForm={setShowForm}
-              />
-            ) : (
-              <Home fields={fields} />
-            )
+            <SignupForm
+              validateFieldsHandler={validateFields}
+              submitHandler={submitHandler}
+              fields={fields}
+              setFields={setFields}
+              field={field}
+              setField={setField}
+              errorField={errorField}
+              setErrorField={setErrorField}
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+              showForm={showForm}
+              setShowForm={setShowForm}
+              usernNameRegexPattern={usernNameRegexPattern}
+              emailRegexPattern={emailRegexPattern}
+              passwordRegexPattern={passwordRegexPattern}
+            />
           }
         />
-        <Route path="*" element={<LoginForm />} />
+        <Route path={`/home/:fieldItemID`} element={<Home fields={fields} />} />
+        <Route
+          path="*"
+          element={
+            <LoginForm
+              loginField={loginField}
+              setLoginField={setLoginField}
+              loginErrorField={loginErrorField}
+              setLoginErrorField={setLoginErrorField}
+              showLoginPassword={showLoginPassword}
+              setShowLoginPassword={setShowLoginPassword}
+              showLoginForm={showLoginForm}
+              setShowLoginForm={setShowLoginForm}
+              fields={fields}
+              setFields={setFields}
+              validateFieldsHandler={validateFields}
+              emailRegexPattern={emailRegexPattern}
+              passwordRegexPattern={passwordRegexPattern}
+              loginSubmitHandler={loginSubmitHandler}
+            />
+          }
+        />
       </Routes>
       <Toast toast={toast} hideToastBar={hideToastBar} />
     </div>
