@@ -92,8 +92,29 @@ function App() {
       // now, we have fields data to check, for the loginField details
       //search in fields array to check whether the loginField details match
       fields.find((fieldItem) => {
-        if (fieldItem.emailID === loginField.emailID) {
-          if (fieldItem.password === loginField.password) {
+        if (
+          fieldItem.emailID !== loginField.emailID &&
+          fieldItem.password !== loginField.password
+        ) {
+          setToast((prev) => ({
+            ...prev,
+            isVisible: "show",
+            message: "We couldn't find your details,please Signup first",
+          }));
+        } else if (
+          fieldItem.emailID === loginField.emailID &&
+          fieldItem.password !== loginField.password
+        ) {
+          setLoginErrorField((prev) => ({
+            ...prev,
+            passwordError: "Please enter correct password",
+          }));
+          setValidFieldID("");
+        } else {
+          if (
+            fieldItem.emailID === loginField.emailID &&
+            fieldItem.password === loginField.password
+          ) {
             setToast((prev) => ({
               ...prev,
               isVisible: "show",
@@ -103,22 +124,7 @@ function App() {
             setSignedIn(() => true);
 
             console.log(validFieldID, "at line 102");
-          } else {
-            setLoginErrorField((prev) => ({
-              ...prev,
-              passwordError: "Please enter correct password",
-            }));
-            setValidFieldID("");
           }
-        } else if (
-          fieldItem.emailID !== loginField.emailID &&
-          fieldItem.password !== loginField.password
-        ) {
-          setToast((prev) => ({
-            ...prev,
-            isVisible: "show",
-            message: "We couldn't find your details,please Signup first",
-          }));
         }
         return validFieldID;
       });
