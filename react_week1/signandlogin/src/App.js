@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import { Home } from "./components/Home";
@@ -66,14 +66,14 @@ function App() {
       (item) => item === errorName
     );
     if (regexPattern.test(fieldName)) {
-      console.log("pattern matched", errorFieldName);
+      // console.log("pattern matched", errorFieldName);
       setErrorField((prev) => {
         return { ...prev, [errorFieldName]: "" };
       });
     } else {
-      console.log("pattern not matched", errorFieldName);
+      // console.log("pattern not matched", errorFieldName);
       setErrorField((prev) => {
-        console.log(errorName, errorText, "printing at line 34");
+        // console.log(errorName, errorText, "printing at line 34");
         return { ...prev, [errorFieldName]: errorText };
       });
     }
@@ -91,7 +91,7 @@ function App() {
     } else {
       // now, we have fields data to check, for the loginField details
       //search in fields array to check whether the loginField details match
-      let validFieldData = fields.find((fieldItem) => {
+      fields.find((fieldItem) => {
         if (fieldItem.emailID === loginField.emailID) {
           if (fieldItem.password === loginField.password) {
             setToast((prev) => ({
@@ -110,7 +110,10 @@ function App() {
             }));
             setValidFieldID("");
           }
-        } else {
+        } else if (
+          fieldItem.emailID !== loginField.emailID &&
+          fieldItem.password !== loginField.password
+        ) {
           setToast((prev) => ({
             ...prev,
             isVisible: "show",
@@ -152,7 +155,7 @@ function App() {
         try {
           const response = await axios.post(`${url}/signup`, field);
           if (response.status === 200) {
-            console.log("success", response.data);
+            // console.log("success", response.data);
 
             setToast((prev) => ({
               ...prev,
@@ -167,7 +170,7 @@ function App() {
             resetValues();
             return response.data;
           } else {
-            console.log("failure", response);
+            // console.log("failure", response);
           }
         } catch (err) {
           setToast((prev) => ({
@@ -179,7 +182,7 @@ function App() {
         }
       };
       let responseFromPostData = postDetailsToApi();
-      console.log(responseFromPostData);
+      // console.log(responseFromPostData);
     }
   }
   function resetLoginValues() {
@@ -211,7 +214,7 @@ function App() {
       if (response.status !== 200)
         console.log("fetching data failed", response.status);
       else {
-        console.log(response.data);
+        // console.log(response.data);
         let credentials = response.data.data;
         setFields(() => [...credentials]);
       }
@@ -240,7 +243,7 @@ function App() {
 
       navigate(`/home/${validFieldID}`);
     }
-  }, [validFieldID]);
+  }, [validFieldID, signedIn, navigate]);
   return (
     <div className="App">
       <Routes>

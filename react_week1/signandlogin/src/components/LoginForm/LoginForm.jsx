@@ -50,13 +50,13 @@ function LoginForm({
                 value={loginField.emailID}
                 placeholder="jamescameron@mail.com"
                 onInput={(e) => {
-                  console.log(e.target.value);
+                  // console.log(e.target.value);
                   return setLoginField((prev) => {
                     return { ...prev, emailID: e.target.value };
                   });
                 }}
                 onBlur={(e) => {
-                  console.log("email in loginForm lost focus");
+                  // console.log("email in loginForm lost focus");
                   let errorAlertMessage = "Email id must be valid address";
                   validateFieldsHandler(
                     emailRegexPattern,
@@ -88,7 +88,7 @@ function LoginForm({
                   });
                 }}
                 onBlur={(e) => {
-                  console.log("password field lost focus");
+                  // console.log("password field lost focus");
                   let errorAlertMessage =
                     "Must have 8 to 18 characters with one capital and one special character";
 
@@ -127,7 +127,7 @@ function LoginForm({
                 id="remember--checkbox"
                 value={loginField.isRemembered}
                 onClick={(e) => {
-                  console.log(e.target.checked);
+                  // console.log(e.target.checked);
 
                   setLoginField((prev) => {
                     return { ...prev, isRemembered: e.target.checked };
@@ -142,17 +142,12 @@ function LoginForm({
             </div>
 
             <div>
-              <button
-                type="submit"
-                id="login--button"
-                className="button login"
-                // onClick={(e) => handleSubmit(e)}
-              >
+              <button type="submit" id="login--button" className="button login">
                 Log in
               </button>
             </div>
             <div>
-              <a href="#" id="forgot--password" className="link--secondary">
+              <a href="/" id="forgot--password" className="link--secondary">
                 Forgot password?
               </a>
             </div>

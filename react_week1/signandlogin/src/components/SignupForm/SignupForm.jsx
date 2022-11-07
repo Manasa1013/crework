@@ -66,7 +66,7 @@ function SignupForm({
                     }));
                   }}
                   onBlur={(e) => {
-                    console.log("the username field lost focus");
+                    // console.log("the username field lost focus");
                     let errorAlertMessage =
                       "Must have atleast 8-20 characters and includes only .,_";
                     validateFieldsHandler(
@@ -92,13 +92,13 @@ function SignupForm({
                   value={field.emailID}
                   placeholder="jamescameron@mail.com"
                   onInput={(e) => {
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     return setField((prev) => {
                       return { ...prev, emailID: e.target.value };
                     });
                   }}
                   onBlur={(e) => {
-                    console.log("email lost focus");
+                    // console.log("email lost focus");
                     let errorAlertMessage = "Email id must be valid address";
                     validateFieldsHandler(
                       emailRegexPattern,
@@ -130,7 +130,7 @@ function SignupForm({
                     });
                   }}
                   onBlur={(e) => {
-                    console.log("password field lost focus");
+                    // console.log("password field lost focus");
                     let errorAlertMessage =
                       "Must have 8 to 18 characters with one capital and one special character";
 
@@ -167,7 +167,7 @@ function SignupForm({
                   id="agree--checkbox"
                   value={field.isChecked}
                   onClick={(e) => {
-                    console.log(e.target.checked);
+                    // console.log(e.target.checked);
                     if (e.target.checked) {
                       setErrorField((prev) => ({
                         ...prev,
@@ -186,7 +186,7 @@ function SignupForm({
                     Terms
                   </a>{" "}
                   and{" "}
-                  <a href="#" className="link--secondary">
+                  <a href="/" className="link--secondary">
                     Conditions
                   </a>
                 </label>
