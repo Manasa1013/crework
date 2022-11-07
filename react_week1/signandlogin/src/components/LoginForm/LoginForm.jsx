@@ -1,23 +1,33 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
 import "./LoginForm.css";
-function LoginForm() {
-  const [fields, setFields] = useState([]);
-  const [field, setField] = useState({
-    emailID: "",
-    password: "",
-  });
-  const [showPassword, setShowPassword] = useState(false);
+import "../SignupForm/SignupForm.css";
+function LoginForm({
+  loginField,
+  setLoginField,
+  loginErrorField,
+  setLoginErrorField,
+  showLoginPassword,
+  setShowLoginPassword,
+  showLoginForm,
+  setShowLoginForm,
+  fields,
+  setFields,
+  validateFieldsHandler,
+  emailRegexPattern,
+  passwordRegexPattern,
+  loginSubmitHandler,
+}) {
   function handleSubmit(e) {
-    console.log(e);
+    e.preventDefault();
+    loginSubmitHandler();
   }
 
   return (
     <>
       <main className="wrapper__main">
         <section className="flex-container">
-          <form onSubmit={handleSubmit()} method="post">
+          <form onSubmit={(e) => handleSubmit(e)}>
             <h1 id="login--heading" className="heading">
               Log in
             </h1>
@@ -37,31 +47,59 @@ function LoginForm() {
                 id="email--input"
                 className="input"
                 name="emailID"
-                value={field.emailID}
-                placeholder="example@mail.com"
-                onChange={(e) => {
+                value={loginField.emailID}
+                placeholder="jamescameron@mail.com"
+                onInput={(e) => {
                   console.log(e.target.value);
-                  setField((prev) => {
+                  return setLoginField((prev) => {
                     return { ...prev, emailID: e.target.value };
                   });
                 }}
+                onBlur={(e) => {
+                  console.log("email in loginForm lost focus");
+                  let errorAlertMessage = "Email id must be valid address";
+                  validateFieldsHandler(
+                    emailRegexPattern,
+                    loginField.emailID,
+                    "emailError",
+                    errorAlertMessage,
+                    loginErrorField,
+                    setLoginErrorField
+                  );
+                }}
               />
+              <p className="para text--red">{loginErrorField.emailError}</p>
             </div>
             <div id="password--container">
               <label htmlFor="password--input" className="label">
                 Password
               </label>
               <input
-                type={showPassword ? "text" : "password"}
+                type={showLoginPassword ? "text" : "password"}
                 id="password--input"
                 className="input"
                 name="password"
-                placeholder="Wamoke@32"
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  setField((prev) => {
+                value={loginField.password}
+                placeholder="theWay^OfWater2"
+                onInput={(e) => {
+                  // console.log(e.target.value);
+                  setLoginField((prev) => {
                     return { ...prev, password: e.target.value };
                   });
+                }}
+                onBlur={(e) => {
+                  console.log("password field lost focus");
+                  let errorAlertMessage =
+                    "Must have 8 to 18 characters with one capital and one special character";
+
+                  validateFieldsHandler(
+                    passwordRegexPattern,
+                    loginField.password,
+                    "passwordError",
+                    errorAlertMessage,
+                    loginErrorField,
+                    setLoginErrorField
+                  );
                 }}
               ></input>
               <button
@@ -69,31 +107,46 @@ function LoginForm() {
                 className="secondary"
                 onClick={(e) => {
                   e.preventDefault();
-                  setShowPassword((prev) => !prev);
+                  setShowLoginPassword((prev) => !prev);
                 }}
               >
                 <i
-                  className={showPassword ? "fa fa-eye-slash" : "fa fa-eye"}
+                  className={
+                    showLoginPassword ? "fa fa-eye-slash" : "fa fa-eye"
+                  }
                 ></i>
               </button>
+              <p className="para text--red" style={{ marginTop: "5px" }}>
+                {loginErrorField.passwordError}
+              </p>
             </div>
             <div>
               <input
                 type="checkbox"
                 name="checkbox"
                 id="remember--checkbox"
+                value={loginField.isRemembered}
+                onClick={(e) => {
+                  console.log(e.target.checked);
+
+                  setLoginField((prev) => {
+                    return { ...prev, isRemembered: e.target.checked };
+                  });
+                }}
                 className="checkbox"
               />
+
               <label htmlFor="remember--checkbox" className="label--remember">
                 Remember me
               </label>
             </div>
+
             <div>
               <button
                 type="submit"
                 id="login--button"
                 className="button login"
-                onClick={handleSubmit()}
+                // onClick={(e) => handleSubmit(e)}
               >
                 Log in
               </button>

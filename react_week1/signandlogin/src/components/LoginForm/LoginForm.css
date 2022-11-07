@@ -120,7 +120,6 @@ hr {
     display: block;
     padding: 0.25rem 0.5rem 0.25rem 0;
 }
-
 .input {
     border: 0.125rem solid transparent;
     border-radius: 0.25rem;
@@ -136,23 +135,22 @@ hr {
 }
 
 #password--input {
-    width: 73%;
+    width: calc(73%);
     margin: 0;
     border-top-right-radius: 0%;
     border-bottom-right-radius: 0%;
 }
 
+#passowrd-input :focus {
+    border: 0.125rem solid var(--primary-green);
+}
+
 .secondary {
-    /* border: 0.125rem solid var(--primary-green); */
-    border-radius: 0.25rem;
     padding: 0.5rem 0.5rem;
     outline: none;
-    color: var(--secondary-green);
     margin: 0;
     width: 25%;
-    height: auto;
     text-align: center;
-    border-left: 0;
     font-weight: 650;
 }
 
@@ -160,11 +158,17 @@ hr {
     display: inline;
     color: var(--background-secondary);
     background-color: var(--text-primary);
+    border-radius: 0.25rem;
     border-top-left-radius: 0%;
     border-bottom-left-radius: 0%;
-    padding: 0.6rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border: 0.125rem solid transparent;
+
 }
 
+#is--shown:focus {
+    border: 0.125rem solid var(--primary-green);
+}
 .checkbox {
     border-radius: 0.125rem;
     display: inline;
