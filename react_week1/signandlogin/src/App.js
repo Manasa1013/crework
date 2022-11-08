@@ -188,7 +188,7 @@ function App() {
         }
       };
       let responseFromPostData = postDetailsToApi();
-      // console.log(responseFromPostData);
+      console.log(responseFromPostData);
     }
   }
   function resetLoginValues() {

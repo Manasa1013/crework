@@ -182,7 +182,7 @@ function SignupForm({
                 />
                 <label htmlFor="agree--checkbox" className="label--remember">
                   I agree with{" "}
-                  <a href="#" className="link--secondary">
+                  <a href="/" className="link--secondary">
                     Terms
                   </a>{" "}
                   and{" "}
@@ -205,7 +205,7 @@ function SignupForm({
                 </button>
               </div>
               <div>
-                <a href="#" id="forgot--password" className="link--secondary">
+                <a href="/" id="forgot--password" className="link--secondary">
                   Forgot password?
                 </a>
               </div>
