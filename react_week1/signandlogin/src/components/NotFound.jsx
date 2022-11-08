@@ -1,4 +1,6 @@
-export function NotFound() {
+import { Link } from "react-router-dom";
+
+export function NotFound({ reDirectToPage }) {
   return (
     <>
       <section>
