@@ -13,6 +13,20 @@ This app lets user signup or login with the credentials they have.It calls API s
 
 [Signup and Login React app](https://reactsigninandlogin.netlify.app/)
 
+## Test credentials 
+* emailId : testuser@gmail.com
+* password : test@Password1
+
+## Tech stack 
+#### Frontend 
+* React
+* CSS
+* Routing with react-router
+
+#### Backend
+* NodeJS
+* Express
+
 ## Future implementations 
 * Using JWT tokens to safely authenticate and authorize users based on profiles.
 * Including database to store,read and update data for better management.
