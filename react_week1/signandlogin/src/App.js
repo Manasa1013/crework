@@ -296,7 +296,16 @@ function App() {
             />
           }
         />
-        <Route path={`/home/:fieldItemID`} element={<Home fields={fields} />} />
+        <Route
+          path={`/home/:fieldItemID`}
+          element={
+            <Home
+              fields={fields}
+              setValidFieldID={setValidFieldID}
+              setSignedIn={setSignedIn}
+            />
+          }
+        />
         <Route
           path="*"
           element={

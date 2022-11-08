@@ -12,3 +12,11 @@
 }
 
 
+.link--primary { 
+  text-decoration: none;
+  background-color: var(--text-primary);
+  color: var(--primary-green);
+  border : 0.125rem solid var(--primary-green);
+  border-radius: 0.25rem;
+  padding: 0.8rem 1rem;
+}
