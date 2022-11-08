@@ -6,6 +6,7 @@ import { Home } from "./components/Home";
 import { LoginForm } from "./components/LoginForm/LoginForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
 import { Toast } from "./components/Toast/Toast";
+import { NotFound } from "./components/NotFound";
 
 function App() {
   const [fields, setFields] = useState([]);
@@ -210,6 +211,10 @@ function App() {
       isChecked: false,
     }));
   }
+  function reDirectToPage() {
+    setValidFieldID(() => "");
+    setSignedIn(() => false);
+  }
   function hideToastBar() {
     setToast((prev) => ({ ...prev, isVisible: "hide", message: "" }));
   }
@@ -298,34 +303,11 @@ function App() {
         />
         <Route
           path={`/home/:fieldItemID`}
-          element={
-            <Home
-              fields={fields}
-              setValidFieldID={setValidFieldID}
-              setSignedIn={setSignedIn}
-            />
-          }
+          element={<Home fields={fields} reDirectToPage={reDirectToPage} />}
         />
         <Route
           path="*"
-          element={
-            <LoginForm
-              loginField={loginField}
-              setLoginField={setLoginField}
-              loginErrorField={loginErrorField}
-              setLoginErrorField={setLoginErrorField}
-              showLoginPassword={showLoginPassword}
-              setShowLoginPassword={setShowLoginPassword}
-              showLoginForm={showLoginForm}
-              setShowLoginForm={setShowLoginForm}
-              fields={fields}
-              setFields={setFields}
-              validateFieldsHandler={validateFields}
-              emailRegexPattern={emailRegexPattern}
-              passwordRegexPattern={passwordRegexPattern}
-              loginSubmitHandler={loginSubmitHandler}
-            />
-          }
+          element={<NotFound reDirectToPage={reDirectToPage} />}
         />
       </Routes>
       <Toast toast={toast} hideToastBar={hideToastBar} />
