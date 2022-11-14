@@ -30,3 +30,4 @@ This app lets user signup or login with the credentials they have.It calls API s
 ## Future implementations 
 * Using JWT tokens to safely authenticate and authorize users based on profiles.
 * Including database to store,read and update data for better management.
+* Alerting the user if the credentials already exist,preventing duplicacy.
