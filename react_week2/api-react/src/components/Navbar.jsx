@@ -28,17 +28,35 @@ export default function Navbar() {
             }
           >
             <li>
-              <Link to="/artists" className="link">
+              <Link
+                to="/artists"
+                className="link"
+                onClick={(openMenu) => {
+                  setOpenMenu((prev) => !prev);
+                }}
+              >
                 Artists
               </Link>
             </li>
             <li>
-              <Link to="/songs" className="link">
+              <Link
+                to="/songs"
+                className="link"
+                onClick={(openMenu) => {
+                  setOpenMenu((prev) => !prev);
+                }}
+              >
                 Songs
               </Link>
             </li>
             <li>
-              <Link to="/playlists" className="link">
+              <Link
+                to="/playlists"
+                className="link"
+                onClick={(openMenu) => {
+                  setOpenMenu((prev) => !prev);
+                }}
+              >
                 Playlists
               </Link>
             </li>
