@@ -36,7 +36,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/" element={<Artists />}></Route>
         <Route path="/artists" element={<Artists />}></Route>
         <Route path="/tracks" element={<Tracks />}></Route>{" "}
         <Route path="/playlists" element={<Playlists />}></Route>

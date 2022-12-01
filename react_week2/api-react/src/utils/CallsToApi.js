@@ -34,13 +34,13 @@ export async function handleSearch(
 ) {
   //defining search parameters from accessToken
   let searchParameters = getSearchParams(accessToken);
-  console.log("button clicked", searchInput, searchParameters, accessToken);
+  // console.log("button clicked", searchInput, searchParameters, accessToken);
   const fetchId = async (searchType) => {
     try {
       let { searchEndPoint } = matchSearchType(searchType, searchInput);
       let searchRes = await fetch(searchEndPoint, searchParameters);
       searchRes = await searchRes.json();
-      console.log(searchRes, "at fetchId");
+      // console.log(searchRes, "at fetchId");
       return searchRes[`${searchType}s`].items[0].id;
     } catch (err) {
       console.error(err, "at fetchId,error");
@@ -49,13 +49,13 @@ export async function handleSearch(
   };
 
   let id = await fetchId(searchType);
-  console.log(id, "at fetchId extracting id");
+  // console.log(id, "at fetchId extracting id");
   const fetchAlbums = async (searchType) => {
     try {
       let { searchResEndPoint } = matchSearchType(searchType, searchInput, id);
       let albums = await fetch(searchResEndPoint, searchParameters);
       albums = await albums.json();
-      console.log(albums, "at fetchAlbums fetching albums");
+      // console.log(albums, "at fetchAlbums fetching albums");
       return albums;
       //   return albums.items
       //     .map((item) => item.images[0])
@@ -81,7 +81,7 @@ export async function handleSearch(
           .map((item) => item.images)
           .reduce((acc, curr) => [...acc, ...curr], []);
       }
-      console.log(images);
+      // console.log(images);
       return images;
     } catch (err) {
       console.error(err, "at fetchImages method");
@@ -89,7 +89,7 @@ export async function handleSearch(
   };
   let imagesRes = await fetchImages(resultAlbums);
   searchDispatch({ type: "SET_PICTURES", payload: imagesRes });
-  console.log(imagesRes, "at handleSearch Method");
+  // console.log(imagesRes, "at handleSearch Method");
 }
 
 export const getSearchParams = (accessToken) => {

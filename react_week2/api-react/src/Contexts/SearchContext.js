@@ -26,9 +26,8 @@ export const SearchReducer = (state, action) => {
       return { ...state, searchInput: action.payload };
     }
     case "SET_PICTURES": {
-      console.log(action.payload, "at set-pictures");
+      // console.log(action.payload, "at set-pictures");
       let stateAfterPicturesSet = { ...state, pictures: action.payload };
-      console.log(stateAfterPicturesSet, "at SET_PICTURES");
       return { ...state, pictures: action.payload };
     }
     default:

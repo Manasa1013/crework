@@ -11,7 +11,7 @@ export function Search({ handleSearch, searchType }) {
           name="search-input"
           id="search-input"
           className="search__input"
-          placeholder="Search"
+          placeholder={`Search for ${searchType}s`}
           value={state.searchInput}
           onInput={(e) => {
             searchDispatch({
@@ -41,7 +41,6 @@ export function Search({ handleSearch, searchType }) {
           id="search-button"
           className="search__button"
           onClick={() => {
-            console.log("button clicked");
             if (state.searchInput.length <= 0) {
               console.log(
                 state.searchInput,
