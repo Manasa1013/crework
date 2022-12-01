@@ -11,5 +11,5 @@ This application lets users' search for their favorite artists,tracks and playli
 
 ### Application links
 
-- (Live Demo)[https://artistsspotify.netlify.app/]
-- (Backend)[https://leftiescart.netlify.app/]
+- [Live Demo](https://artistsspotify.netlify.app/)
+- [Backend](https://spotifyserver.manasa1998.repl.co)
