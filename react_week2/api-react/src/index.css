@@ -38,6 +38,7 @@ body {
   position: sticky;
   top: 0;
   padding: 0.75rem 0.5rem;
+  z-index: 10;
 }
 .route-links{
   display: flex;
@@ -199,6 +200,7 @@ section {
   width: calc(90% - 2rem);
   border-radius: 0.125rem;
   /* box-shadow: ; */
+  z-index: 0;
   filter: drop-shadow(0 2px 2px rgb(0 0 0 /30%));
 }
 
@@ -281,6 +283,7 @@ section {
     color: var(--primary-green);
     justify-content: space-between;
     align-items: center;
+    z-index: 10;
   }
   .hamburger-menu{
     display: none;

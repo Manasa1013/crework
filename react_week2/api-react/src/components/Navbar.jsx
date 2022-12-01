@@ -40,13 +40,13 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                to="/songs"
+                to="/tracks"
                 className="link"
                 onClick={(openMenu) => {
                   setOpenMenu((prev) => !prev);
                 }}
               >
-                Songs
+                Tracks
               </Link>
             </li>
             <li>

@@ -23,11 +23,12 @@ export const SearchReducer = (state, action) => {
       return { ...state, accessToken: action.payload };
     }
     case "SET_SEARCH_INPUT": {
-      console.log(action.payload, "at set-search-input");
       return { ...state, searchInput: action.payload };
     }
     case "SET_PICTURES": {
       console.log(action.payload, "at set-pictures");
+      let stateAfterPicturesSet = { ...state, pictures: action.payload };
+      console.log(stateAfterPicturesSet, "at SET_PICTURES");
       return { ...state, pictures: action.payload };
     }
     default:

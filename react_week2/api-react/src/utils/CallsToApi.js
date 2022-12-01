@@ -1,48 +1,95 @@
 export const BACKEND = "https://spotifyserver.manasa1998.repl.co";
 export const SPOTIFYAPI = "https://api.spotify.com/v1";
-export async function handleSearch(searchInput, accessToken, searchDispatch) {
+
+const matchSearchType = (searchType, searchInput, id) => {
+  switch (searchType) {
+    case "artist":
+      return {
+        searchEndPoint: `${SPOTIFYAPI}/search?q=${searchInput}&type=artist`,
+        searchResEndPoint: `${SPOTIFYAPI}/artists/${id}/albums`,
+      };
+    case "playlist":
+      return {
+        searchEndPoint: `${SPOTIFYAPI}/search?q=${searchInput}&type=playlist`,
+        // searchResEndPoint: `${SPOTIFYAPI}/playlists/${id}/images`,
+        searchResEndPoint: `${SPOTIFYAPI}/search?q=${searchInput}&type=playlist`,
+      };
+    case "track":
+      return {
+        searchEndPoint: `${SPOTIFYAPI}/search?q=${searchInput}&type=track`,
+        searchResEndPoint: `${SPOTIFYAPI}/tracks/${id}`,
+      };
+    default:
+      return {
+        searchEndPoint: `${SPOTIFYAPI}/search?q=${searchInput}&type=album`,
+        searchResEndPoint: `${SPOTIFYAPI}/tracks/${id}/albums`,
+      };
+  }
+};
+export async function handleSearch(
+  searchInput,
+  accessToken,
+  searchDispatch,
+  searchType
+) {
   //defining search parameters from accessToken
   let searchParameters = getSearchParams(accessToken);
   console.log("button clicked", searchInput, searchParameters, accessToken);
-
-  const fetchArtistId = async () => {
+  const fetchId = async (searchType) => {
     try {
-      let artistSearchRes = await fetch(
-        `${SPOTIFYAPI}/search?q=` + searchInput + "&type=artist",
-        searchParameters
-      );
-
-      artistSearchRes = await artistSearchRes.json();
-      console.log(artistSearchRes);
-      return artistSearchRes.artists.items[0].id;
+      let { searchEndPoint } = matchSearchType(searchType, searchInput);
+      let searchRes = await fetch(searchEndPoint, searchParameters);
+      searchRes = await searchRes.json();
+      console.log(searchRes, "at fetchId");
+      return searchRes[`${searchType}s`].items[0].id;
     } catch (err) {
-      console.error(err, "at artistSearchRes");
+      console.error(err, "at fetchId,error");
       return;
     }
   };
-  let artistId = await fetchArtistId();
-  console.log(artistId);
-  const fetchArtistAlbums = async () => {
+
+  let id = await fetchId(searchType);
+  console.log(id, "at fetchId extracting id");
+  const fetchAlbums = async (searchType) => {
     try {
-      let artistAlbums = await fetch(
-        `${SPOTIFYAPI}/artists/` + artistId + "/albums",
-        searchParameters
-      );
-      artistAlbums = await artistAlbums.json();
-      console.log(artistAlbums.items);
-      let artistImages = artistAlbums.items
-        .map((item) => item.images[0])
-        .reduce((acc, curr) => [...acc, curr], []);
-      console.log(artistImages, "artistImages");
-      return artistImages;
+      let { searchResEndPoint } = matchSearchType(searchType, searchInput, id);
+      let albums = await fetch(searchResEndPoint, searchParameters);
+      albums = await albums.json();
+      console.log(albums, "at fetchAlbums fetching albums");
+      return albums;
+      //   return albums.items
+      //     .map((item) => item.images[0])
+      //     .reduce((acc, curr) => [...acc, curr], []);
     } catch (err) {
-      console.error(err, "at fetchArtistAlbums");
+      console.error(err, "at fetchAlbums fetching albums");
       return;
     }
   };
-  let artistImageList = await fetchArtistAlbums();
-  searchDispatch({ type: "SET_PICTURES", payload: artistImageList });
-  console.log(artistImageList, "at handleSearch Method");
+  let resultAlbums = await fetchAlbums(searchType);
+
+  const fetchImages = async (response) => {
+    try {
+      let images = [];
+      if (searchType === "artist") {
+        images = await response.items
+          .map((item) => item.images[0])
+          .reduce((acc, curr) => [...acc, curr], []);
+      } else if (searchType === "track") {
+        images = await response.album.images;
+      } else if (searchType === "playlist") {
+        images = await response.playlists.items
+          .map((item) => item.images)
+          .reduce((acc, curr) => [...acc, ...curr], []);
+      }
+      console.log(images);
+      return images;
+    } catch (err) {
+      console.error(err, "at fetchImages method");
+    }
+  };
+  let imagesRes = await fetchImages(resultAlbums);
+  searchDispatch({ type: "SET_PICTURES", payload: imagesRes });
+  console.log(imagesRes, "at handleSearch Method");
 }
 
 export const getSearchParams = (accessToken) => {

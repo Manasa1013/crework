@@ -1,7 +1,8 @@
 import { useSearch } from "../Contexts/SearchContext";
 
-export function Search({ handleSearch }) {
+export function Search({ handleSearch, searchType }) {
   const { state, searchDispatch } = useSearch();
+
   return (
     <>
       <div className="search__container">
@@ -10,10 +11,9 @@ export function Search({ handleSearch }) {
           name="search-input"
           id="search-input"
           className="search__input"
-          placeholder="Search for favorite artist"
+          placeholder="Search"
           value={state.searchInput}
           onInput={(e) => {
-            console.log("at search", e.target.value);
             searchDispatch({
               type: "SET_SEARCH_INPUT",
               payload: e.target.value,
@@ -26,8 +26,14 @@ export function Search({ handleSearch }) {
                 state.searchInput.length,
                 "at OnBlur"
               );
+            } else {
+              handleSearch(
+                state.searchInput,
+                state.accessToken,
+                searchDispatch,
+                searchType
+              );
             }
-            handleSearch(state.searchInput, state.accessToken, searchDispatch);
           }}
         />
         <button
@@ -35,8 +41,21 @@ export function Search({ handleSearch }) {
           id="search-button"
           className="search__button"
           onClick={() => {
-            if (state.searchInput.length <= 0) return;
-            handleSearch(state.searchInput, state.accessToken, searchDispatch);
+            console.log("button clicked");
+            if (state.searchInput.length <= 0) {
+              console.log(
+                state.searchInput,
+                state.searchInput.length,
+                "at search,button clicked"
+              );
+            } else {
+              handleSearch(
+                state.searchInput,
+                state.accessToken,
+                searchDispatch,
+                searchType
+              );
+            }
           }}
         >
           Search

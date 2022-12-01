@@ -1,5 +1,6 @@
 import "../index.css";
 export function DisplayList({ pictures }) {
+  console.log(pictures, "at display list");
   return (
     <>
       <div className="grid-container" style={{ marginBottom: "3rem" }}>
@@ -10,7 +11,7 @@ export function DisplayList({ pictures }) {
                 <img
                   className="responsive-img"
                   src={picture.url}
-                  alt="Artist singing"
+                  alt="Cover pic"
                   width={250}
                   height={250}
                 />
