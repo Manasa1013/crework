@@ -1,13 +1,13 @@
 import "../index.css";
+import uuid from "react-uuid";
 export function DisplayList({ pictures }) {
-  console.log(pictures, "at display list");
   return (
     <>
       <div className="grid-container" style={{ marginBottom: "3rem" }}>
         {pictures !== undefined &&
           pictures.map((picture) => {
             return (
-              <div key={picture.url}>
+              <div key={`${picture.url} ${uuid()} `}>
                 <img
                   className="responsive-img"
                   src={picture.url}
